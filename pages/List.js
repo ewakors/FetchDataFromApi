@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, ListView, ActivityIndicator, Alert } from 'react-native'
+import { Text, View, StyleSheet, ListView, ActivityIndicator, Alert, Image } from 'react-native'
 
 class List extends Component {
   constructor(props) {
@@ -29,7 +29,6 @@ class List extends Component {
           isLoading: false,
           dataSource: ds.cloneWithRows(responseJson),
         }, function () {
-          // In this block you can do something with new state.
         });
       })
       .catch((error) => {
@@ -60,7 +59,17 @@ class List extends Component {
 
     return (
       <View style={styles.MainContainer}>
-        <Text style={styles.text}> Users </Text>
+        <View style={styles.logoContainer}>
+          <Text style={styles.title}> Users </Text>
+          <Image style={styles.logo} source={require('./users.png')} />
+        </View>
+        <View
+          style={{
+            height: .5,
+            width: "100%",
+            backgroundColor: "#03204c",
+          }}
+        />
         <ListView
           style={styles.listView}
           dataSource={this.state.dataSource}
@@ -80,18 +89,22 @@ const styles = StyleSheet.create({
     marginTop: 3,
     backgroundColor: '#d9f9b1',
     alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   text: {
     color: 'blue',
     alignItems: 'center',
     marginTop: 30,
+    marginBottom: 20,
     fontSize: 20
   },
   MainContainer: {
-    // Setting up View inside content in Vertically center.
+    backgroundColor: '#d6e5fc',
     justifyContent: 'center',
     flex: 1,
-    margin: 10
+    margin: 10,
   },
   rowViewContainer: {
     fontSize: 20,
@@ -102,7 +115,21 @@ const styles = StyleSheet.create({
     margin: 10
   },
   listView: {
-    marginTop: 10,
     backgroundColor: '#d6e5fc'
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    marginBottom: 30
+  },
+  title: {
+    color: '#1077dd',
+    fontSize: 35,
+    fontWeight: 'bold',
+    marginTop: 30
+  },
+  logoContainer: {
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })
