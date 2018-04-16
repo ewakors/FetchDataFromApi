@@ -9,10 +9,10 @@ class List extends Component {
       dataSource: ''
     }
   }
-  GetItem(name, company, website) {
+  GetItem(name, company, website, phone, email) {
     Alert.alert(
       name,
-      "Company: " + company + " \nWebsite: " + website,
+      "Company: " + company + " \nWebsite: " + website + "\nPhone: " + phone + "\nEmail: " + email,
       [
         { text: 'OK', onPress: () => console.log('OK Pressed') },
       ]
@@ -75,7 +75,7 @@ class List extends Component {
           dataSource={this.state.dataSource}
           renderSeparator={this.ListViewItemSeparator}
           renderRow={(rowData) => <Text style={styles.rowViewContainer}
-            onPress={this.GetItem.bind(this, rowData.name, rowData.company.name, rowData.website)} >{rowData.name}</Text>}
+            onPress={this.GetItem.bind(this, rowData.name, rowData.company.name, rowData.website, rowData.phone, rowData.email)} >{rowData.name}</Text>}
         />
       </View>
     );
