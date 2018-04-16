@@ -6,12 +6,17 @@ class List extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      dataSource:''
+      dataSource: ''
     }
   }
-  GetItem(name,company,website) {
-    Alert.alert(name,company,website);
-
+  GetItem(name, company, website) {
+    Alert.alert(
+      name,
+      "Company: " + company + " \nWebsite: " + website,
+      [
+        { text: 'OK', onPress: () => console.log('OK Pressed') },
+      ]
+    )
   }
 
   componentDidMount() {
@@ -55,13 +60,13 @@ class List extends Component {
 
     return (
       <View style={styles.MainContainer}>
-      <Text style={styles.text}> Users </Text>
+        <Text style={styles.text}> Users </Text>
         <ListView
-          style = {styles.listView}
+          style={styles.listView}
           dataSource={this.state.dataSource}
           renderSeparator={this.ListViewItemSeparator}
           renderRow={(rowData) => <Text style={styles.rowViewContainer}
-            onPress={this.GetItem.bind(this, rowData.name,rowData.company.name,rowData.website)} >{rowData.name}</Text>}
+            onPress={this.GetItem.bind(this, rowData.name, rowData.company.name, rowData.website)} >{rowData.name}</Text>}
         />
       </View>
     );
@@ -79,8 +84,8 @@ const styles = StyleSheet.create({
   text: {
     color: 'blue',
     alignItems: 'center',
-    marginTop:30,
-    fontSize:20
+    marginTop: 30,
+    fontSize: 20
   },
   MainContainer: {
     // Setting up View inside content in Vertically center.
@@ -93,8 +98,8 @@ const styles = StyleSheet.create({
     paddingRight: 10,
     paddingTop: 10,
     paddingBottom: 10,
-    color:'#2172ed',
-    margin:10
+    color: '#2172ed',
+    margin: 10
   },
   listView: {
     marginTop: 10,
